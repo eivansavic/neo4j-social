@@ -1,11 +1,9 @@
 package com.neo4j.neo4j.service.use_case;
 
-import com.neo4j.neo4j.model.Tweet;
+import com.neo4j.neo4j.domain.Tweet;
 import com.neo4j.neo4j.repository.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class GetTweets {

@@ -1,7 +1,7 @@
 package com.neo4j.neo4j.service.use_case;
 
-import com.neo4j.neo4j.model.Tag;
-import com.neo4j.neo4j.model.Tweet;
+import com.neo4j.neo4j.domain.Tag;
+import com.neo4j.neo4j.domain.Tweet;
 import com.neo4j.neo4j.repository.TagRepository;
 import com.neo4j.neo4j.repository.TweetRepository;
 import com.neo4j.neo4j.service.use_case.value.CreateTweetInfo;
@@ -35,21 +35,19 @@ public class PostTweet {
 
     private Tweet createTweet(final String text, final List<Tag> tags) {
         final Random random = new Random();
+        Tweet tweet = new Tweet();
+        tweet.setId(random.nextLong() + 1);
+        tweet.setText(text);
+        tweet.setCreated(ZonedDateTime.now().toString());
+        tweet.setTags(tags);
 
-        return tweetRepository.save(Tweet.builder()
-                .id(random.nextLong() + 1)
-                .text(text)
-                .created(ZonedDateTime.now())
-                .tags(tags)
-                .build()
-        );
+        return tweetRepository.save(tweet);
     }
 
     private Tag createTag(String name) {
-//        return tagRepository.save(Tag.builder()
-//                .name(name)
-//                .build()
-//        );
-            return null;
+        Tag tag = new Tag();
+        tag.setName(name);
+
+        return tagRepository.save(tag);
     }
 }

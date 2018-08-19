@@ -1,7 +1,7 @@
 package com.neo4j.neo4j.controller;
 
 import com.neo4j.neo4j.controller.dto.PostTweetDto;
-import com.neo4j.neo4j.model.Tweet;
+import com.neo4j.neo4j.domain.Tweet;
 import com.neo4j.neo4j.service.use_case.PostTweet;
 import com.neo4j.neo4j.service.use_case.GetTweets;
 import com.neo4j.neo4j.service.use_case.value.CreateTweetInfo;
