@@ -26,7 +26,8 @@ public class PostTweet {
     public void postTweet(CreateTweetInfo createTweetInfo) {
         List<Tag> tags = null;
         if (createTweetInfo.getTag() != null) {
-            Tag tag = createTag(createTweetInfo.getTag());
+            Optional<Tag> tagOptional = getTagByName(createTweetInfo.getTag());
+            Tag tag = tagOptional.orElseGet(() -> createTag(createTweetInfo.getTag()));
             tags = Collections.singletonList(tag);
         }
 
@@ -45,9 +46,10 @@ public class PostTweet {
     }
 
     private Tag createTag(String name) {
-        Tag tag = new Tag();
-        tag.setName(name);
+        return tagRepository.save(new Tag(name));
+    }
 
-        return tagRepository.save(tag);
+    private Optional<Tag> getTagByName(String name) {
+        return tagRepository.findByName(name);
     }
 }
